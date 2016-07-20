@@ -62,6 +62,10 @@ class Client implements ClientInterface
         return $this->guzzleClient->post(
             $this->getApiUrl(),
             [
+                'curl' => [
+                    CURLOPT_FRESH_CONNECT => true,
+                    CURLOPT_TIMEOUT => 1
+                ],
                 'headers' => [
                     'Authorization' => sprintf('key=%s', $this->apiKey),
                     'Content-Type' => 'application/json'
